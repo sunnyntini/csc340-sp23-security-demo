@@ -18,6 +18,7 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a th:href="@{/home}">Home</a></li>
                     <li><a th:href="@{/admin}">Admin</a></li>
+                    <li><a th:href="@{/mod}">Mod</a></li>
                     <li><a th:href="@{/hello}">User</a></li>
                 </ul>
             </div>
@@ -25,17 +26,29 @@
 
         <main class="container">
             <div class="bg-light p-5 rounded">
-                <h1>Admin Content</h1>
-                <p class="lead">This content is for users with ADMIN Role. </p>
-                <a  th:href="@{/admin}" class="btn btn-lg btn-primary" role="button">I'm an ADMIN! &raquo;</a>
-            </div>
-            <br><br><br>
-            <div class="bg-light p-5 rounded">
                 <h1>User Content</h1>
-                <p class="lead">This content is for users with USER Role. </p>
+                <p class="lead">This content is for authenticated users. </p>
                 <a  th:href="@{/hello}" class="btn btn-lg btn-primary" role="button">I'm a USER! &raquo;</a>
-            </div>
-        </main>        
-    </body>
+            </div>            <br><br><br>
 
-</html>
+
+
+
+                        <div class="bg-light p-5 rounded">
+                            <h1>Mod Content</h1>
+                            <p class="lead">This content is for users with MOD or ADMIN Roles </p>
+                            <a  th:href="@{/mod}" class="btn btn-lg btn-primary" role="button">I'm a MOD/ADMIN! &raquo;</a>
+                        </div>
+                        <br><br><br>
+                                    <div class="bg-light p-5 rounded">
+                                        <h1>Admin Content</h1>
+                                        <p class="lead">This content is for users with ADMIN Role. </p>
+                                        <a  th:href="@{/admin}" class="btn btn-lg btn-primary" role="button">I'm an ADMIN! &raquo;</a>
+                                    </div>
+
+
+
+                                    </main>        
+                                    </body>
+
+                                    </html>

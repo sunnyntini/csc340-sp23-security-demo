@@ -17,13 +17,14 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
-    
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/", "/home").permitAll()
                 .requestMatchers("/admin/**").hasAnyRole("ADMIN")
+                .requestMatchers("/mod/**").hasAnyRole("MOD", "ADMIN")
                 .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
@@ -31,26 +32,33 @@ public class WebSecurityConfig {
                 .permitAll()
                 ).exceptionHandling((x) -> x.accessDeniedPage("/403"))
                 .logout((logout) -> logout.permitAll());
-        
+
         return http.build();
     }
-    
+
     @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user
                 = User.withDefaultPasswordEncoder()
-                        .username("user")
+                        .username("youngling")
                         .password("password")
                         .roles("USER")
                         .build();
-        
+
+        UserDetails mod
+                = User.withDefaultPasswordEncoder()
+                        .username("padawan")
+                        .password("modpass")
+                        .roles("MOD")
+                        .build();
+
         UserDetails admin
                 = User.withDefaultPasswordEncoder()
-                        .username("admin")
+                        .username("knight")
                         .password("adminpass")
                         .roles("ADMIN")
                         .build();
-        
-        return new InMemoryUserDetailsManager(user, admin);
+
+        return new InMemoryUserDetailsManager(user, mod, admin);
     }
 }

@@ -19,6 +19,7 @@
                 <ul class="nav navbar-nav">
                     <li ><a th:href="@{/home}">Home</a></li>
                     <li><a th:href="@{/admin}">Admin</a></li>
+                     <li><a th:href="@{/mod}">Mod</a></li>
                     <li class="active"><a th:href="@{/hello}">User
                 </ul>
                 <form th:action="@{/logout}" method="post">
@@ -29,6 +30,13 @@
 
         </div>
         <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
-        
+         <main class="container">
+            <div class="bg-light p-5 rounded">
+                <h1>User Content</h1>
+                <p class="lead">This content is only visible for any authenticated user</p>
+
+            </div>
+
+        </main>  
     </body>
 </html>
